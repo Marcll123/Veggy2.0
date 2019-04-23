@@ -1,1 +1,135 @@
- 
+ /*Estilos de la pagina privada
+
+primeramente los estilos del menu lateral*/
+menulateral {
+    color: white;
+    background-color: dimgrey;
+}
+
+.menulateral li a {
+    color: white;
+}
+
+/*estilos del nav del menu y su dropdown*/
+#dropdown1 {
+    top: -56px;
+}
+
+.nav-dash{
+    background-color: #303841;
+    height: 56px;
+    line-height: 56px;
+}
+
+#dropdown1 li a {
+    color: black;
+}
+
+#dropdown1 li:hover a {
+    color: white;
+    background: grey;
+}
+
+/*menu estilos del btn y letras*/
+.background {
+    background-color: #3a4750;
+}
+
+
+.btn {
+    background-color: #00adb5;
+}
+
+.btn:hover {
+    background-color: dimgray;
+}
+
+.con {
+    margin: 5em;
+}
+
+.letra {
+    font-size: 25px;
+    color: dimgray;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: rgba(136, 132, 132, 0.158);
+    outline: none;
+}
+
+.tabs .indicator {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: #6effbf;
+    will-change: left, right;
+}
+
+.color-m {
+    color: #34a7b2;
+}
+
+.color-d {
+    color: #fc5185;
+}
+
+.redx-text {
+    color: #fc5185;
+}
+
+.color1 {
+    background-color: #34a7b2;
+}
+
+.imagen-g {
+    width: 300px;
+    height: 300px;
+}
+
+.contenido3 {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 2em;
+    background-color: white;
+}
+
+.bosy-login {
+    background-color: #33313b;
+}
+
+.img-login {
+    width: 10em;
+    height: 10em;
+}
+
+.x {
+    margin-top: 10em;
+}
+
+.header-table {
+    background-color: gainsboro;
+    color: darkslategrey;
+    text-align: center;
+    border: solid 1px gainsboro;
+}
+
+.con-table {
+    background-color: white;
+}
+
+.color-fon-table {
+    background-color: white;
+}
+
+.pagination li.active {
+    background-color: #34a7b2;
+}
+.modal-change{
+    max-height: 38%; overflow: visible
+}
+
+

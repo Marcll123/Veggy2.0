@@ -10,6 +10,22 @@ class EmployeeView {
     this.formFields={
       name:  document.getElementById("first_name")
     }
+    this.formFields2={
+      name:  document.getElementById("last_name")
+    }
+    this.formFields3={
+      name:  document.getElementById("email")
+    }
+    this.formFields4={
+      name:  document.getElementById("password")
+    }
+    this.actionUpdate=false;
+    this.id = ''
+    this.idDelete = ''
+    this.name = ''
+    this.surname = ''
+    this.mail = ''
+    this.pass = ''
     document
       .getElementById("employee-view")
       .addEventListener("click", event => {
@@ -19,29 +35,43 @@ class EmployeeView {
         }
         if (element.matches("#btn-save")) {
           const data = new FormData(this.form);
-          this.service.save(data);
-          this.getEmployees();
+          if(!this.actionUpdate){
+            this.service.save(data);
+            this.getEmployees();
+          }else{
+            const areglo = Array.from(data.entries()).map(arr => {
+                return {[arr[0]]:arr[1]} 
+            });     
+            console.log( Object.assign({},...areglo))
+            this.service.update( Object.assign({},...areglo),this.id)
+          }    
         }
 
         if (element.matches(".btn-update")) {
-          const id=element.getAttribute('data-id');
-         if(id){
-           const employee= this.data.find(obj=> obj.id==id);
+          this.id =element.getAttribute('data-id')
+          console.log(this.id )
+          if(this.id ){
+           const employee= this.data.find(obj=> obj.id==this.id )
+           console.log(employee.apellido)
            this.formFields.name.value=employee.nombre
-                 
-           console.log(this.openModal);
-           
+           this.formFields2.name.value=employee.apellido
+           this.formFields3.name.value=employee.correo
+           this.formFields4.name.value=employee.clave
+
+           this.name=employee.nombre
+           this.surname=employee.apellido
+           this.mail=employee.correo
+           this.pass=employee.clave
+
            this.openModal.click();
-           console.log(employee);
-           
+           this.actionUpdate=true;
          }
          
-          
         }
 
         if (element.matches(".btn-delete")) {
-          console.log('delete');
-          
+           this.idDelete = element.getAttribute('data-id')
+           this.service.delete( this.idDelete)
         }
       });
   }
@@ -66,7 +96,7 @@ class EmployeeView {
                 <td>
                     <p>
                     <button class="btn teal darken-1 btn-update" data-id=${valor.id}><i class="material-icons btn-update" data-id=${valor.id}>create</i></button>
-                    <button class="btn red darken-4 btn-delete" data-id=${valor.id}><i class="material-icons btn-delete" data-id=${valor.id}>delete</i></button>
+                     <button class="btn red darken-4 btn-delete modal-trigger" data-id=${valor.id} href="#modal2"><i class="material-icons btn-delete" data-id=${valor.id}>delete</i></button>
                     </p>
                 </td>
              </tr>

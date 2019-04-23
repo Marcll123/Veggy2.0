@@ -58,9 +58,11 @@
                                 <input id="password" name="passEmployee" type="password" class="validate">
                                 <label for="password">Contraseña</label>
                         </div>
-                        <button class="btn waves-effect waves-light" id="btn-save"  type='button'  name="action">Crear Empleado
+                        <button class="btn waves-effect waves-light" id="btn-save" type='button' name="action">Crear
+                            Empleado
                             <i class="material-icons right">send</i>
                         </button>
+
                     </div>
                 </form>
                 <div class="respuesta"></div>
@@ -69,7 +71,24 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
             </div>
         </div>
-        
+
+        <div id="modal2" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4 class="center">Eliminar</h4>
+                <button class="btn waves-effect waves-light" id="btn-delete" type='button' name="action">Eliminar
+                    Empleado
+                    <i class="material-icons right">delete</i>
+
+
+
+                </button>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+
+
     </main>
     <script src="http://192.168.1.60:9090/bundle.js"></script>
 </body>

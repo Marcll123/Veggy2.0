@@ -1,10 +1,10 @@
 <?php
-    require_once '../models/employeeModel.php';
-    class controlEmployees{
+    require_once '../models/EmployeeModel.php';
+    class EmployeeController{
 
         public function showEmployees(){
            
-            $Employee = new modelEmployees();
+            $Employee = new EmployeeModel();
             return $Employee->consult();
         }
 
@@ -14,10 +14,26 @@
             $mail = $_POST['emailEmployee'];
             $key = $_POST['passEmployee'];
 
-            $employeeX = new modelEmployees();
+            $employeeX = new EmployeeModel();
             return $employeeX->createUser($name , $surname, $mail, $key);
         }
 
+        public function update(){
+            $id = $_REQUEST['id'];
+            $body = json_decode(file_get_contents("php://input"));    
+         
+            $employeeU = new EmployeeModel();
+            return $employeeU->updateUser($body->nameEmployee, $body->lastnameEmployee, 
+            $body->emailEmployee, $body->passEmployee, $id);
+        }
+
+        public function delete(){
+            $id = $_REQUEST['id'];
+            $employeeE = new EmployeeModel();
+            return $employeeE->deleteUser($id);
+        }
+
+     
     }
 
     

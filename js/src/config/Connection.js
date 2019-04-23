@@ -18,8 +18,7 @@ export class Connection {
         return this;
     }
 
-    async execute(){
-         
+    async execute(){       
         const response= await  fetch(this.url,{
             method: this.method,
             headers: this.headers,

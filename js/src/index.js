@@ -7,6 +7,6 @@
  import './fonts/MaterialIcons-Regular.woff2'
  import './css/icons.css'
  import './views/EmployeeView'
- 
 
  M.AutoInit();
+

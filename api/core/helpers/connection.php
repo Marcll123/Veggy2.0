@@ -3,7 +3,7 @@
     const BD_SERVIDOR = 'localhost';
     const BD_CHARSET = 'utf8';
 
-class database{   
+class Connection{   
         private static $db_server = 'localhost';
         private static $db_name = 'aprendemvc';
         private static $db_user = 'root';

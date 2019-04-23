@@ -1,11 +1,13 @@
 <?php
-     require_once '../helpers/connection.php';
+     require_once '../helpers/Connection.php';
      
-     class modelEmployees extends database {
+     class EmployeeModel extends Connection{
+        public $id = null;
         public $name = null;
         public $surname = null;
         public $mail = null;
         public $key = null;
+        
         public function consult(){
           
             $connection = parent::connect();
@@ -43,6 +45,48 @@
                 ];
                 return json_encode($array);
             }
+        }
+
+        public function updateUser( $name , $surname, $mail, $key, $id){
+            $conexion = parent::connect();    
+            try {
+                $query = 'UPDATE empleados SET nombre=?, apellido=?, correo=?, clave=? WHERE id=?';
+                $conexion->prepare($query)->execute(array($name , $surname, $mail, $key, $id));
+                $array = [
+                    'message' => 'He actualizado un registro',
+                    'type' => 'success',
+                    'specificMessage' =>$conexion
+                ];
+                return json_encode($array);
+            } catch (Exception $e) {
+                $array = [
+                    'message' => 'Error al actualizar un registro',
+                    'type' => 'error',
+                    'specificMessage' => $e->getMessage()
+                ];
+                return json_encode($array);
+            }
+        }
+
+        public function deleteUser($id){
+               $conexion = parent::connect();    
+                try {
+                    $query = 'DELETE FROM empleados WHERE id=?';
+                    $conexion->prepare($query)->execute(array($id));
+                    $array = [
+                        'message' => 'He Eliminado un registro',
+                        'type' => 'success',
+                        'specificMessage' =>$conexion
+                    ];
+                    return json_encode($array);
+                } catch (Exception $e) {
+                    $array = [
+                        'message' => 'Error al eliminar un registro',
+                        'type' => 'error',
+                        'specificMessage' => $e->getMessage()
+                    ];
+                    return json_encode($array);
+                }        
         }
     }
 ?>

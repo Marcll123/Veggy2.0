@@ -1,34 +1,55 @@
-import {Connection} from '../config/Connection'
-import { API, GET, POST } from '../config/ConfigApi';
+import {
+    Connection
+} from '../config/Connection'
+import {
+    API,
+    GET,
+    POST,
+    PUT,
+    DELETE
+} from '../config/ConfigApi';
 
 export class EmployeeService {
-    constructor(){
+    constructor() {
         this.url = `${API}employee.php`;
     }
-    
-    async getEmployees(){
-      const response= await  new Connection(this.url, GET).execute();
-      if(response.hasOwnProperty('res')){
-          return response.res;
-      }else{
-          return response;
-      }
-    }
 
-   async save(body){
-        const response= await  new Connection(this.url, POST).setData(body).execute();
-        if(response.hasOwnProperty('res')){
+    async getEmployees() {
+        const response = await new Connection(this.url, GET).execute();
+        if (response.hasOwnProperty('res')) {
             return response.res;
-        }else{
+        } else {
             return response;
         }
     }
 
-    update(id, body){
-
+    async save(body) {
+        const response = await new Connection(this.url, POST).setData(body).execute();
+        if (response.hasOwnProperty('res')) {
+            return response.res;
+        } else {
+            return response;
+        }
+    }
+    async update(body, id) {
+        const response = await new Connection(`${this.url}?id=${id}`, PUT).setHeaders({
+            'Content-Type': 'application/json'
+        }).setData(JSON.stringify(body)).execute();
+        if (response.hasOwnProperty('res')) {
+            return response.res;
+        } else {
+            return response;
+        }
     }
 
-    delete(id){
-        
+    async delete(id) {
+        const response = await new Connection(`${this.url}?id=${id}`, DELETE).setHeaders({
+            'Content-Type': 'application/json'
+        }).execute();
+        if (response.hasOwnProperty('res')) {
+            return response.res;
+        } else {
+            return response;
+        }
     }
 }
